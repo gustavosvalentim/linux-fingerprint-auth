@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Starting enrollment"
+fprintd-enroll 1> /dev/null
+echo "Enrollment finished"

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Instructions from https://github.com/uunicorn/python-validity#setting-up
+
+display_step() {
+    echo "[*] $1"
+}
+
+clean_old_packages() {
+    apt-get remove fprintd
+}
+
+install_dependencies() {
+    add-apt-repository -y ppa:uunicorn/open-fprintd
+    apt-get update -y
+    apt-get install -y open-fprintd fprintd-clients python3-validity
+}
+
+display_step "Cleaning packages"
+clean_old_packages
+printf "\n"
+
+display_step "Installing dependencies. This may take a while"
+install_dependencies 
+printf "\n"
+
+display_step "Enabling fingerprint for system authentication"
+
+chmod +x enroll-fingerprint
